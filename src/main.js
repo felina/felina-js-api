@@ -1,15 +1,20 @@
 // Contains methods for interacting with the server API via HTTP requests.
 
 (function() {
+    var debug = true;
+
     // Global options for all requests
     var defaults = {
         xhrFields: {
             withCredentials: true
         },
-        dataType: 'json'
+        dataType: 'json',
+        error: function (err) {
+            if (debug) {
+                console.error(err);
+            }
+        }
     };
-
-    var debug = true;
 
     window.fl = window.fl || {};
 
@@ -21,6 +26,12 @@
     // Local
     // window.fl.server = 'http://localhost:5000/';
 
+    /**
+     * Base method from which all others extend. Sends an AJAX request to
+     * the server URL, with all the options passed in as arguments as well
+     * as any defaults not provided. Uses jQuery's `ajax` method for handling
+     * the request to normalise cross-browser inconsistencies
+     */
     window.fl.ajax = function(options) {
         options = $.extend(defaults, options);
         options.url = fl.server + options.url;
@@ -32,43 +43,28 @@
         $.ajax(options);
     };
 
+    /**
+     * Sends a HTTP GET request with all supplied options.
+     */
     window.fl.get = function(options) {
         options.type = 'GET';
         fl.ajax(options);
     };
 
+    /**
+     * Sends a HTTP POST request with all supplied options.
+     */
     window.fl.post = function(options) {
         options.type = 'POST';
         fl.ajax(options);
     };
 
-    window.fl.login = function(url, data) {
+    window.fl.login = function(url, data, sucess) {
         // Send the request
         fl.post({
             url: url,
             data: data,
-            success: function(data) {
-                // If the login was successful
-                if (data.res) {
-                    // Inform the user
-                    alert('Logged in successfully');
-                    // Hide the login modal
-                    $('#register').modal('hide');
-
-                    // Update the header to replace the login button with the
-                    // details of the newly logged in user
-                    fl.makeHeader(data);
-                }
-                // Login failed
-                else {
-                    // Inform the user
-                    alert('Invalid username or password');
-                    console.log(data);
-                }
-            },
-            error: function (err) {
-                console.error(err);
-            }
+            success: success
         });
     };
 
