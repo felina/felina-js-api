@@ -51,45 +51,41 @@
     /**
      * Sends a HTTP GET request with all supplied options.
      */
-    window.fl.get = function(options) {
-        options.type = 'GET';
+    window.fl.get = function(url, success) {
+        var options = {
+            type: 'GET',
+            url: url,
+            success: success
+        };
         fl.ajax(options);
     };
 
     /**
      * Sends a HTTP POST request with all supplied options.
      */
-    window.fl.post = function(options) {
-        options.type = 'POST';
-        fl.ajax(options);
-    };
-
-
-    window.fl.auth = function(url, data, success) {
-        // Send the request
-        fl.post({
+    window.fl.post = function(url, data, success) {
+        var options = {
+            type: 'POST',
             url: url,
             data: data,
             success: success
-        });
+        };
+        fl.ajax(options);
     };
 
     window.fl.login = function(data, success) {
-        fl.auth('login', data, success);
+        fl.post('login', data, success);
     };
 
     window.fl.register = function(data, success) {
-        fl.auth('register', data, success);
+        fl.post('register', data, success);
     };
 
     /**
      * Uploads the given image metadata to the server.
      */
     window.fl.uploadMetadata = function(data) {
-        fl.post({
-            url: 'upload/metadata',
-            data: data
-        });
+        fl.post('upload/metadata', data);
     };
 
     /**
@@ -101,20 +97,15 @@
     window.fl.getFeatures = function(success, project) {
         // TODO: don't hardcode
         project = 1;
-        fl.get({
-            url: 'project/fields?project=' + project,
-            success: success
-        });
+        var url = 'project/fields?project=' + project;
+        fl.get(url, success);
     };
 
     /**
      * Gets the list of all species currently available for annotation.
      */
     window.fl.getSpecies = function(success) {
-        fl.get({
-            url: 'projects',
-            success: success
-        });
+        fl.get('projects', success);
     };
 
     /**
@@ -122,29 +113,20 @@
      * the user's information if the check passes.
      */
     window.fl.loginCheck = function(success) {
-        fl.get({
-            url: 'logincheck',
-            success: success
-        });
+        fl.get('logincheck', success);
     };
 
     /**
      * Terminates the current session.
      */
     window.fl.logout = function(success) {
-        fl.get({
-            url: 'logout',
-            success: success
-        });
+        fl.get('logout', success);
     };
 
     /**
      * Gets a bunch of images or something not really sure here guys.
      */
     window.fl.getImages = function(success) {
-        fl.get({
-            url: 'images',
-            success: success
-        });
+        fl.get('images', success);
     };
 })();
