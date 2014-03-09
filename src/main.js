@@ -129,4 +129,8 @@
     window.fl.getImages = function(success) {
         fl.get('images', success);
     };
+
+    window.fl.getJobs = function(success) {
+        fl.get('jobs', success);
+    };
 })();
