@@ -47,7 +47,9 @@ module.exports = function(grunt) {
         globals: {
           jQuery: true,
           alert: true,
-          GMaps: true
+          fl: true,
+          console: true,
+          $: true
         }
       },
       gruntfile: {

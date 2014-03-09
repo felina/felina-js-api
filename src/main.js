@@ -9,6 +9,11 @@
             withCredentials: true
         },
         dataType: 'json',
+        success: function (data) {
+            if (debug) {
+                console.log(data);
+            }
+        },
         error: function (err) {
             if (debug) {
                 console.error(err);
@@ -59,7 +64,8 @@
         fl.ajax(options);
     };
 
-    window.fl.login = function(url, data, sucess) {
+
+    window.fl.auth = function(url, data, success) {
         // Send the request
         fl.post({
             url: url,
@@ -68,25 +74,42 @@
         });
     };
 
-    // Sends the image metadata to the server
-    // TODO: this endpoint doesn't work
+    window.fl.login = function(data, success) {
+        fl.auth('login', data, success);
+    };
+
+    window.fl.register = function(data, success) {
+        fl.auth('register', data, success);
+    };
+
+    /**
+     * Uploads the given image metadata to the server.
+     */
     window.fl.uploadMetadata = function(data) {
         fl.post({
             url: 'upload/metadata',
-            data: data,
-            success: function(d) {
-                console.log(d);
-            }
+            data: data
         });
     };
 
-    window.fl.getFeatures = function(success) {
+    /**
+     * Gets the list of feature data to be annotated for the project with the
+     * given ID.
+     * @param success {Function} The callback to be executed when the data loads.
+     * @param project {Integer} The ID of the project to load features of.
+     */
+    window.fl.getFeatures = function(success, project) {
+        // TODO: don't hardcode
+        project = 1;
         fl.get({
-            url: 'project/fields?project=1',
+            url: 'project/fields?project=' + project,
             success: success
         });
     };
 
+    /**
+     * Gets the list of all species currently available for annotation.
+     */
     window.fl.getSpecies = function(success) {
         fl.get({
             url: 'projects',
@@ -94,6 +117,10 @@
         });
     };
 
+    /**
+     * Determines the authorization status of the current session, and returns
+     * the user's information if the check passes.
+     */
     window.fl.loginCheck = function(success) {
         fl.get({
             url: 'logincheck',
@@ -101,6 +128,9 @@
         });
     };
 
+    /**
+     * Terminates the current session.
+     */
     window.fl.logout = function(success) {
         fl.get({
             url: 'logout',
@@ -108,6 +138,9 @@
         });
     };
 
+    /**
+     * Gets a bunch of images or something not really sure here guys.
+     */
     window.fl.getImages = function(success) {
         fl.get({
             url: 'images',
