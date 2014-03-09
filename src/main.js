@@ -11,6 +11,8 @@
 
     var debug = true;
 
+    window.fl = window.fl || {};
+
     // URL of the server. Comment for development/production
     // George server
     window.fl.server = 'http://nl.ks07.co.uk:5000/';
