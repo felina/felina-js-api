@@ -1,0 +1,24 @@
+{
+  "name": "felina-js",
+  "version": "0.0.1",
+  "authors": [
+    "Giles Lavelle <giles.lavelle@gmail.com>"
+  ],
+  "description": "JavaScript client library for the Felina API",
+  "main": "src/main.js",
+  "keywords": [
+    "map"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.0"
+  }
+}
