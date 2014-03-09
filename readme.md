@@ -1,21 +1,14 @@
-# Atlas
+# Felina JS
 
-Altas is a jQuery plugin for picking locations on a map.
+JavaScript client library for the Felina API
 
 # Install
 
-`bower install --save jquery-atlas`
+`bower install --save felina-js`
 
 # Use
 
 ```js
-$('foo').atlas({
-    height: 500,
-    width: 500,
-    callback: function(placeName) {
-        alert(placeName);
-    }
-});
 ```
 
 # License
