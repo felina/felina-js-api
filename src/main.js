@@ -50,7 +50,7 @@
             url: url,
             success: success
         };
-        fl.ajax(options);
+        this.ajax(options);
     };
 
     /**
@@ -63,22 +63,22 @@
             data: data,
             success: success
         };
-        fl.ajax(options);
+        this.ajax(options);
     };
 
     api.login = function(data, success) {
-        fl.post('login', data, success);
+        this.post('login', data, success);
     };
 
     api.register = function(data, success) {
-        fl.post('register', data, success);
+        this.post('register', data, success);
     };
 
     /**
      * Uploads the given image metadata to the server.
      */
     api.uploadMetadata = function(data) {
-        fl.post('upload/metadata', data);
+        this.post('upload/metadata', data);
     };
 
     /**
@@ -91,14 +91,14 @@
         // TODO: don't hardcode
         project = 1;
         var url = 'project/fields?project=' + project;
-        fl.get(url, success);
+        this.get(url, success);
     };
 
     /**
      * Gets the list of all species currently available for annotation.
      */
     api.getSpecies = function(success) {
-        fl.get('projects', success);
+        this.get('projects', success);
     };
 
     /**
@@ -106,25 +106,25 @@
      * the user's information if the check passes.
      */
     api.loginCheck = function(success) {
-        fl.get('logincheck', success);
+        this.get('logincheck', success);
     };
 
     /**
      * Terminates the current session.
      */
     api.logout = function(success) {
-        fl.get('logout', success);
+        this.get('logout', success);
     };
 
     /**
      * Gets a bunch of images or something not really sure here guys.
      */
     api.getImages = function(success) {
-        fl.get('images', success);
+        this.get('images', success);
     };
 
     api.getJobs = function(success) {
-        fl.get('jobs', success);
+        this.get('jobs', success);
     };
 
     window.fl_api = function(url) {
