@@ -1,6 +1,6 @@
 {
   "name": "felina-js",
-  "version": "0.0.8",
+  "version": "1.0.0",
   "description": "JavaScript client library for the Felina API",
   "main": "src/main.js",
   "directories": {
