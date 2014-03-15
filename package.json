@@ -1,6 +1,6 @@
 {
   "name": "felina-js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "JavaScript client library for the Felina API",
   "main": "src/main.js",
   "directories": {
@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/felina/js-api",
   "dependencies": {
+    "jquery": "~2.1.0"
+  },
+  "devDependencies": {
     "grunt": "~0.4.3",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-uglify": "~0.4.0",
