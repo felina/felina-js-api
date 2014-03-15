@@ -42,11 +42,12 @@ api.ajax = function(options) {
 /**
  * Sends a HTTP GET request with all supplied options.
  */
-api.get = function(url, success) {
+api.get = function(url, success, error) {
     var options = {
         type: 'GET',
         url: url,
-        success: success
+        success: success,
+        error: error
     };
     this.ajax(options);
 };
@@ -85,44 +86,44 @@ api.uploadMetadata = function(data) {
  * @param success {Function} The callback to be executed when the data loads.
  * @param project {Integer} The ID of the project to load features of.
  */
-api.getFeatures = function(success, project) {
+api.getFeatures = function(success, project, error) {
     // TODO: don't hardcode
     project = 1;
     var url = 'project/fields?project=' + project;
-    this.get(url, success);
+    this.get(url, success, error);
 };
 
 /**
  * Gets the list of all species currently available for annotation.
  */
-api.getSpecies = function(success) {
-    this.get('projects', success);
+api.getSpecies = function(success, error) {
+    this.get('projects', success, error);
 };
 
 /**
  * Determines the authorization status of the current session, and returns
  * the user's information if the check passes.
  */
-api.loginCheck = function(success) {
-    this.get('logincheck', success);
+api.loginCheck = function(success, error) {
+    this.get('logincheck', success, error);
 };
 
 /**
  * Terminates the current session.
  */
-api.logout = function(success) {
-    this.get('logout', success);
+api.logout = function(success, error) {
+    this.get('logout', success, error);
 };
 
 /**
  * Gets a bunch of images or something not really sure here guys.
  */
-api.getImages = function(success) {
-    this.get('images', success);
+api.getImages = function(success, error) {
+    this.get('images', success, error);
 };
 
-api.getJobs = function(success) {
-    this.get('jobs', success);
+api.getJobs = function(success, error) {
+    this.get('jobs', success, error);
 };
 
 var fl_api = function(url) {
