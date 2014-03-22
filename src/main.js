@@ -29,7 +29,7 @@ var api = {};
  * the request to normalise cross-browser inconsistencies
  */
 api.ajax = function(options) {
-    $.extend(options, defaults);
+    options = $.extend({}, defaults, options);
     options.url = this.url + options.url;
 
     if (debug){
