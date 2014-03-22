@@ -76,8 +76,8 @@ api.register = function(data, success) {
 /**
  * Uploads the given image metadata to the server.
  */
-api.uploadMetadata = function(data) {
-    this.post('upload/metadata', data);
+api.uploadMetadata = function(data, success) {
+    this.post('upload/metadata', data, success);
 };
 
 /**
