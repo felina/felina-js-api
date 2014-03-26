@@ -83,6 +83,14 @@ pr.uploadMetadata = function(data, success) {
     this.post('upload/metadata', data, success);
 };
 
+pr.putSubuser = function(data, success) {
+    this.post('subuser', data, success);
+};
+
+pr.updateSub = function(data, success) {
+    this.post('updatesub', data, success);
+};
+
 /**
  * Gets the list of feature data to be annotated for the project with the
  * given ID.
@@ -127,6 +135,10 @@ pr.getImages = function(success, error) {
 
 pr.getJobs = function(success, error) {
     this.get('jobs', success, error);
+};
+
+pr.getSubuser = function(success, error) {
+    this.get('subuser', success, error);
 };
 
 module.exports = fl_api;
