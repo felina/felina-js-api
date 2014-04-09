@@ -127,16 +127,29 @@ pr.logout = function(success, error) {
 };
 
 /**
- * Gets a bunch of images or something not really sure here guys.
+ * Gets all images uploaded by the current user
  */
 pr.getImages = function(success, error) {
     this.get('images', success, error);
 };
 
+/**
+ * Gets all executable packages uploaded by the current user
+ */
+pr.getExecutables = function(success, error) {
+    this.get('exec', success, error);
+};
+
+/**
+ * Gets all jobs started by the current user
+ */
 pr.getJobs = function(success, error) {
     this.get('jobs', success, error);
 };
 
+/**
+ * Gets all subusers registered by the current researcher
+ */
 pr.getSubuser = function(success, error) {
     this.get('subuser', success, error);
 };
