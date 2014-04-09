@@ -68,29 +68,44 @@ pr.post = function(url, data, success) {
     this.ajax(options);
 };
 
+/**
+ * Signs in with an existing user account
+ */
 pr.login = function(data, success) {
     this.post('login', data, success);
 };
 
+/**
+ * Registers a new user account
+ */
 pr.register = function(data, success) {
     this.post('register', data, success);
 };
 
 /**
- * Uploads the given image metadata to the server.
+ * Uploads image metadata to the server.
  */
 pr.uploadMetadata = function(data, success) {
     this.post('upload/metadata', data, success);
 };
 
+/**
+ * Adds a new subuser to the current researcher
+ */
 pr.putSubuser = function(data, success) {
     this.post('subuser', data, success);
 };
 
+/**
+ * Updates one of the current researcher's subusers
+ */
 pr.updateSub = function(data, success) {
     this.post('updatesub', data, success);
 };
 
+/**
+ * Adds a new project for the current researcher
+ */
 pr.addProject = function(data, success) {
     this.post('project', data, success);
 };
@@ -130,6 +145,10 @@ pr.logout = function(success, error) {
     this.get('logout', success, error);
 };
 
+/**
+ * Starts a new image processing job that runs the executable package on the
+ * images
+ */
 pr.startJob = function(executable, images, success, error) {
     var data = {
         executable: executable,
