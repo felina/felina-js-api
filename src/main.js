@@ -126,6 +126,14 @@ pr.logout = function(success, error) {
     this.get('logout', success, error);
 };
 
+pr.startJob = function(exe, images, success, error) {
+    var data = {
+        exeID: exe,
+        imageIDs: images
+    };
+    this.post('start', data, success, error);
+};
+
 /**
  * Gets all images uploaded by the current user
  */
