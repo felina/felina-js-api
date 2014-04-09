@@ -91,6 +91,10 @@ pr.updateSub = function(data, success) {
     this.post('updatesub', data, success);
 };
 
+pr.addProject = function(data, success) {
+    this.post('project', data, success);
+};
+
 /**
  * Gets the list of feature data to be annotated for the project with the
  * given ID.
