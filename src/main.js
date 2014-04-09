@@ -126,10 +126,10 @@ pr.logout = function(success, error) {
     this.get('logout', success, error);
 };
 
-pr.startJob = function(exe, images, success, error) {
+pr.startJob = function(executable, images, success, error) {
     var data = {
-        exeID: exe,
-        imageIDs: images
+        executable: executable,
+        images: images
     };
     this.post('start', data, success, error);
 };
