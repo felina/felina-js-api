@@ -69,6 +69,19 @@ pr.post = function(url, data, success) {
 };
 
 /**
+ * Sends a HTTP PATCH request with all supplied options.
+ */
+pr.patch = function(url, data, success) {
+    var options = {
+        type: 'PATCH',
+        url: url,
+        data: data,
+        success: success
+    };
+    this.ajax(options);
+};
+
+/**
  * Signs in with an existing user account
  */
 pr.login = function(data, success) {
@@ -108,6 +121,10 @@ pr.updateSub = function(data, success) {
  */
 pr.addProject = function(data, success) {
     this.post('project', data, success);
+};
+
+pr.updateUser = function(data, success) {
+    this.patch('user', data, success);
 };
 
 /**
