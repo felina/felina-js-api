@@ -92,39 +92,42 @@ pr.login = function(data, success) {
  * Registers a new user account
  */
 pr.register = function(data, success) {
-    this.post('register', data, success);
+    this.post('user', data, success);
 };
 
 /**
  * Uploads image metadata to the server.
  */
 pr.uploadMetadata = function(data, success) {
-    this.post('upload/metadata', data, success);
+    this.post('meta', data, success);
 };
 
 /**
  * Adds a new subuser to the current researcher
  */
 pr.putSubuser = function(data, success) {
-    this.post('subuser', data, success);
+    this.post('subusers', data, success);
 };
 
 /**
  * Updates one of the current researcher's subusers
  */
-pr.updateSub = function(data, success) {
-    this.post('updatesub', data, success);
+pr.updateSub = function(id, data, success) {
+    this.patch('subusers/' + encodeURIComponent(id), data, success);
 };
 
 /**
  * Adds a new project for the current researcher
  */
 pr.addProject = function(data, success) {
-    this.post('project', data, success);
+    this.post('projects', data, success);
 };
 
-pr.updateUser = function(data, success) {
-    this.patch('user', data, success);
+/**
+ * Updates a user.
+ */
+pr.updateUser = function(id, data, success) {
+    this.patch('users/' + encodeURIComponent(id), data, success);
 };
 
 /**
@@ -136,7 +139,7 @@ pr.updateUser = function(data, success) {
 pr.getFeatures = function(success, project, error) {
     // TODO: don't hardcode
     project = 1;
-    var url = 'project/fields?project=' + project;
+    var url = 'projects/' + encodeURIComponent(project) + '/fields';
     this.get(url, success, error);
 };
 
@@ -152,14 +155,14 @@ pr.getSpecies = function(success, error) {
  * the user's information if the check passes.
  */
 pr.loginCheck = function(success, error) {
-    this.get('logincheck', success, error);
+    this.get('user', success, error);
 };
 
 /**
  * Terminates the current session.
  */
 pr.logout = function(success, error) {
-    this.get('logout', success, error);
+    this.post('logout', success, error);
 };
 
 /**
@@ -185,7 +188,7 @@ pr.getImages = function(success, error) {
  * Gets all executable packages uploaded by the current user
  */
 pr.getExecutables = function(success, error) {
-    this.get('exec', success, error);
+    this.get('execs', success, error);
 };
 
 /**
@@ -199,7 +202,7 @@ pr.getJobs = function(success, error) {
  * Gets all subusers registered by the current researcher
  */
 pr.getSubuser = function(success, error) {
-    this.get('subuser', success, error);
+    this.get('subusers', success, error);
 };
 
 module.exports = fl_api;
