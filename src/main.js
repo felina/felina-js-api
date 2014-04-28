@@ -7,6 +7,7 @@ var defaults = {
         withCredentials: true
     },
     dataType: 'json',
+    contentType: 'application/json',
     success: function (data) {
         if (debug) {
             console.log(data);
@@ -37,6 +38,10 @@ pr.ajax = function(options) {
 
     if (debug){
         console.log(options);
+    }
+
+    if (options.data) {
+        options.data = JSON.stringify(options.data);
     }
 
     $.ajax(options);
@@ -137,8 +142,6 @@ pr.updateUser = function(id, data, success) {
  * @param project {Integer} The ID of the project to load features of.
  */
 pr.getFeatures = function(success, project, error) {
-    // TODO: don't hardcode
-    project = 1;
     var url = 'projects/' + encodeURIComponent(project) + '/fields';
     this.get(url, success, error);
 };
@@ -182,6 +185,10 @@ pr.startJob = function(executable, images, success, error) {
  */
 pr.getImages = function(success, error) {
     this.get('images', success, error);
+};
+
+pr.getProjectImages = function(id, success, error) {
+    this.get('projects/' + id + '/images', success, error);
 };
 
 /**
