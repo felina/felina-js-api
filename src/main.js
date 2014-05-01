@@ -21,7 +21,7 @@ var defaults = {
 };
 
 var fl_api = function(url) {
-    this.url = url || 'http://ec2-54-194-186-121.eu-west-1.compute.amazonaws.com/';
+    this.url = url || 'https://api.darwinapp.co:5000/';
 };
 
 var pr = fl_api.prototype;
@@ -138,19 +138,23 @@ pr.updateUser = function(id, data, success) {
 /**
  * Gets the list of feature data to be annotated for the project with the
  * given ID.
+ * @param id {Integer} The ID of the project to load features of.
  * @param success {Function} The callback to be executed when the data loads.
- * @param project {Integer} The ID of the project to load features of.
  */
-pr.getFeatures = function(success, project, error) {
-    var url = 'projects/' + encodeURIComponent(project) + '/fields';
+pr.getFeatures = function(id, success, error) {
+    var url = 'projects/' + encodeURIComponent(id) + '/fields';
     this.get(url, success, error);
+};
+
+pr.putFeatures = function(id, data, success) {
+    this.post('projects/' + encodeURIComponent(id) + '/fields', data, success);
 };
 
 /**
  * Gets the list of all species currently available for annotation.
  */
 pr.getSpecies = function(success, error) {
-    this.get('projects', success, error);
+    this.get('projects?details=1?all=true', success, error);
 };
 
 /**
@@ -165,18 +169,14 @@ pr.loginCheck = function(success, error) {
  * Terminates the current session.
  */
 pr.logout = function(success, error) {
-    this.post('logout', success, error);
+    this.post('logout', {}, success, error);
 };
 
 /**
  * Starts a new image processing job that runs the executable package on the
  * images
  */
-pr.startJob = function(executable, images, success, error) {
-    var data = {
-        executable: executable,
-        images: images
-    };
+pr.startJob = function(data, success, error) {
     this.post('start', data, success, error);
 };
 
