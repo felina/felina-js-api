@@ -212,4 +212,8 @@ pr.getSubuser = function(success, error) {
     this.get('subusers', success, error);
 };
 
+pr.getCSV = function(id, success, error) {
+    this.get('csvs/' + id, success, error);
+};
+
 module.exports = fl_api;
