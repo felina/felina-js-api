@@ -202,7 +202,7 @@ pr.getExecutables = function(success, error) {
  * Gets all jobs started by the current user
  */
 pr.getJobs = function(success, error) {
-    this.get('jobs', success, error);
+    this.get('jobs?debug=1', success, error);
 };
 
 /**
@@ -213,7 +213,11 @@ pr.getSubuser = function(success, error) {
 };
 
 pr.getCSV = function(id, success, error) {
-    this.get('csvs/' + id, success, error);
+    this.get('job/' + id + '?results=1', success, error);
+};
+
+pr.uploadImage = function(data, success, error) {
+    this.post('images/', data, success, error);
 };
 
 module.exports = fl_api;
