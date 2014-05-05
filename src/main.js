@@ -213,7 +213,7 @@ pr.getSubuser = function(success, error) {
 };
 
 pr.getCSV = function(id, success, error) {
-    this.get('job/' + id + '?results=1', success, error);
+    this.get('jobs/' + id + '?results=1', success, error);
 };
 
 pr.uploadImage = function(data, success, error) {
